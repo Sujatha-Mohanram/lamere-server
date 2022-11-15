@@ -59,8 +59,10 @@ router.put('/:id', (req,res) => {
 });
 
 router.delete('/:id',(req,res)=>{
-    if(!ObjectId.isValid(req.params.id))
+    if(!ObjectId.isValid(req.params.id)){ 
+        console.log(req.params.id);
     return res.status(400).send('No record with given id :${req.params.id}');
+    }
 
     Faculty.findByIdAndRemove(req.params.id,(err,doc)=>{
         if(!err){ res.send(doc);}
